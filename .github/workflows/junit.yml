@@ -36,11 +36,11 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('java-junit/pom.xml') }}
+        key: ${{ runner.os }}-m2-${{ hashFiles('pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
 
     - name: Build and test without Modules
-      working-directory: java-junit
+      working-directory: ./
       run: ./mvnw -B test
       if: (matrix.java-version == '1.7') || (matrix.java-version == '1.8')
 
