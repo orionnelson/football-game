@@ -33,4 +33,3 @@ jobs:
 
     - name: Build and test without Modules
       run: mvn -B test --file pom.xml
-      if: (matrix.java-version == '1.7') || (matrix.java-version == '1.8')
