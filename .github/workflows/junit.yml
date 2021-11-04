@@ -2,18 +2,10 @@ name: Test Java + JUnit 4
 
 on:
   push:
-    paths:
-      - '**'
-      - '.github/workflows/junit.yml'
-    branches:
-      - with_assertions
+    branches: [ main ]
   pull_request:
-    paths:
-      - '**'
-      - '.github/workflows/junit.yml'
-    branches:
-      - with_assertions
-
+    branches: [ main ]
+    
 jobs:
   matrix_build:
     runs-on: ${{ matrix.operating-system }}
