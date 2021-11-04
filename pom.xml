@@ -3,6 +3,17 @@
   <groupId>proj2</groupId>
   <artifactId>proj2</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+    <dependencies>
+
+        <!-- junit 5, unit test -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.3.1</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
