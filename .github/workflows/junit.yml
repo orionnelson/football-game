@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ ubuntu-latest, windows-latest ]
-        java-version: [ 1.7, 1.8, 11, 16 ]
+        java-version: [ 11, 16 ]
     name: Java ${{ matrix.java-version }} Build on ${{ matrix.operating-system }}
 
     steps:
