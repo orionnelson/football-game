@@ -2,9 +2,11 @@ name: Test Java + JUnit 4
 
 on:
   push:
-    branches: [ main ]
+    branches:
+    - '*'
   pull_request:
-    branches: [ main ]
+    branches:
+    - '*'
     
 jobs:
   matrix_build:
@@ -13,7 +15,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ ubuntu-latest, windows-latest ]
-        java-version: [ 11, 16 ]
+        java-version: [8, 11, 16]
     name: Java ${{ matrix.java-version }} Build on ${{ matrix.operating-system }}
 
     steps:
@@ -32,4 +34,9 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
 
     - name: Build and test without Modules
-      run: mvn -B test --file pom.xml
+      run: mvn  -Pjacoco clean verify -B test --file pom.xml
+      
+    - name: Calculate test Coverage
+      uses: codecov/codecov-action@v1
+      with:
+        file: '*jacoco.xml'
