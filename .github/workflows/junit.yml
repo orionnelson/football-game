@@ -34,7 +34,7 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
 
     - name: Build and test without Modules
-      run: mvn  -Pjacoco clean verify -B test --file pom.xml
+      run: mvn -B test --file pom.xml
       
     - name: Calculate test Coverage
       uses: codecov/codecov-action@v1
