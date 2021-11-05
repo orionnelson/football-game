@@ -39,5 +39,5 @@ jobs:
     - name: Calculate test Coverage
       uses: codecov/codecov-action@v2
       with:
-        token: adc7e6f8-8852-4eda-9bff-1e2056533393
+        token: ${adc7e6f8-8852-4eda-9bff-1e2056533393}
         file: '*jacoco.xml'
