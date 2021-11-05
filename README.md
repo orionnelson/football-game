@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-# Mini Soccer Game
+
+# Mini Soccer Game [![codecov](https://codecov.io/gh/orionnelson/football-game/branch/main/graph/badge.svg?token=6UY2PVL3RX)](https://codecov.io/gh/orionnelson/football-game)
 
 A mini soccer game written in Java 11 using Java Swing.
 
@@ -60,5 +60,3 @@ including `pause` and `resume` will be disabled until a new `SoccerGame` is star
 | ![In game](screenshots/in_game.png) | ![Game over](screenshots/game_over.png) |
 =======
 # football-game
-Project 2 Of EECS 3311
->>>>>>> 84c7288bba196abe0677c4d2d1f87302f1ce63c8
