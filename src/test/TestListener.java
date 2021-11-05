@@ -64,7 +64,7 @@ public class TestListener {
 	
 	public KeyEvent genEvent(int called) {
 		KeyEvent key = new KeyEvent(gamePanel, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  called,'Z');
-	    gamePanel.getKeyListeners()[0].keyPressed(key);
+	    gamePanel.getKeyListeners().keyPressed(key);
 		return key;
 	}
 	
