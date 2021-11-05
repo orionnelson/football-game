@@ -37,6 +37,6 @@ jobs:
       run: mvn -B test --file pom.xml
       
     - name: Calculate test Coverage
-      uses: codecov/codecov-action@v1
+      uses: codecov/codecov-action@v2
       with:
         file: '*jacoco.xml'
