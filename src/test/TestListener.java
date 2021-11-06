@@ -20,7 +20,19 @@ import org.junit.jupiter.api.DisplayName;
 public class TestListener {
 	
 	// A new gamePanel is createted for testing
-	private final GamePanel gamePanel = new GamePanel();
+	JFrame gameFrame = new JFrame("Mini Soccer");
+	GamePanel gamePanel = new GamePanel();
+	GameListener gl = new GameListener(gamePanel);
+	MenubarListener menubarListener = new MenubarListener(gamePanel);
+	GameMenuBar gameMenuBar = new GameMenuBar(menubarListener);
+	gameFrame.add(gamePanel);
+	gameFrame.addKeyListener(gl);
+	gameFrame.setJMenuBar(gameMenuBar);
+	gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	gameFrame.setSize(600, 600);
+	gameFrame.setLocationRelativeTo(null);
+	gameFrame.setResizable(false);
+	gameFrame.setVisible(true);
 	SoccerGame sg = gamePanel.getGame();
 	private GameListener gl = new GameListener(gamePanel);
 	
