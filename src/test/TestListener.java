@@ -4,99 +4,107 @@ package test;
 import org.junit.jupiter.api.Test;
 
 import controller.GameListener;
+import controller.MenubarListener;
 import model.SoccerGame;
+import view.GameMenuBar;
 import view.GamePanel;
+import java.awt.Robot;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+import java.awt.AWTException;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JFrame;
 
 import org.junit.jupiter.api.DisplayName;
 
 public class TestListener {
 	
 	// A new gamePanel is createted for testing
-	private final GamePanel gamePanel = new GamePanel();
-	SoccerGame sg = gamePanel.getGame();
-	private GameListener gl = new GameListener(gamePanel);
 	
+	
+    public static JFrame gameFrame = new JFrame("Mini Soccer");
+	public static GamePanel gamePanel = new GamePanel();
+	public static GameListener gl = new GameListener(gamePanel);
+	public static MenubarListener menubarListener = new MenubarListener(gamePanel);
+	public static GameMenuBar gameMenuBar = new GameMenuBar(menubarListener);
+	SoccerGame sg = gamePanel.getGame();
+	public void setupGame() {
+		gameFrame.add(gamePanel);
+		gameFrame.addKeyListener(gl);
+		gameFrame.setJMenuBar(gameMenuBar);
+		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		gameFrame.setSize(600, 600);
+		gameFrame.setLocationRelativeTo(null);
+		gameFrame.setResizable(false);
+		gameFrame.setVisible(true);
+		 Point sp = new Point(265,305);
+		 sg.getActivePlayer().setPlayerPosition(sp);
+	}
 	
 	@Test
 	@DisplayName("Test Player Moves Up")
 	public void testMovingUP() {
-		 KeyEvent up = genEvent(KeyEvent.VK_UP);
-		 Point mv = MovementHelper(up);
-		assertTrue(mv.y > 0);
+		 setupGame();
+		 Point up = genEvent(KeyEvent.VK_UP);
+		assertTrue(up.y < 0);
 		
 	}
 	
 	@Test
 	@DisplayName("Test Player Moves Down")
 	public void testMovingDown() {
-		 KeyEvent up = genEvent(KeyEvent.VK_DOWN);
-		 Point mv = MovementHelper(up);
-		assertTrue(mv.y < 0);
+		setupGame();
+		 Point down = genEvent(KeyEvent.VK_DOWN);
+		assertTrue(down.y > 0);
 		
 	}
 	
 	@Test
 	@DisplayName("Test Player Moves Right")
 	public void testMovingRight() {
-		 KeyEvent up = genEvent(KeyEvent.VK_RIGHT);
-		 Point mv = MovementHelper(up);
-		assertTrue(mv.x > 0);
+		setupGame();
+		 Point right = genEvent(KeyEvent.VK_RIGHT);
+		assertTrue(right.x > 0);
 		
 	}
 	
 	@Test
 	@DisplayName("Test Player Moves Left")
 	public void testMovingLeft() {
-		 KeyEvent up = genEvent(KeyEvent.VK_LEFT);
-		 Point mv = MovementHelper(up);
-		assertTrue(mv.x < 0);
+		 setupGame();
+		 Point left = genEvent(KeyEvent.VK_LEFT);
+		 assertTrue(left.x < 0);
 		
 	}
 	
 	
 	
-	public KeyEvent genEvent(int called) {
-		KeyEvent key = new KeyEvent(gamePanel, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  called,'Z');
-	    gamePanel.getKeyListeners()[0].keyPressed(key);
-		return key;
-	}
-	
-	
-	public Point MovementHelper(KeyEvent e) {
-		// Start Game to Simulate Movement 
-		
+	public Point genEvent(int called) {
 		Point pos1  =  sg.getActivePlayer().getPlayerPosition();
-		System.out.println(pos1);
-		//Calls Keypress Method we now check if given event e the player moves accordingly
-		gl.keyPressed(e);
-	    Point pos2 = new Point();
+		try {
+			Robot r = new Robot();
+			 r.setAutoWaitForIdle(true);
+		     r.delay(1500);
+		     r.waitForIdle();
+			r.keyPress(called);r.keyRelease(called);
+			r.keyPress(called);r.keyRelease(called);
+			
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Point pos2 = new Point();
 		if (!sg.isPaused() && !sg.isOver()) {
-			switch (e.getKeyCode()) {
-				case KeyEvent.VK_LEFT:
+		
 					pos2 = sg.getActivePlayer().getPlayerPosition();
-					break;
-				case KeyEvent.VK_RIGHT:
-					pos2 = sg.getActivePlayer().getPlayerPosition();
-					break;
-				case KeyEvent.VK_UP:
-					pos2 = sg.getActivePlayer().getPlayerPosition();
-					break;
-				case KeyEvent.VK_DOWN:
-					pos2 = sg.getActivePlayer().getPlayerPosition();
-					break;
 				
-	}}
-		int x  = (int) (pos1.getX() - pos2.getX());
-		int y = (int) (pos1.getY()-pos2.getY());
+	}
+		int x  = ( (int)pos2.getX() - (int)pos1.getX());
+		int y = (int) (pos2.getY()-pos1.getY());
 	return new Point(x,y);
-}
-
-
+	}
+	
 }
