@@ -21,8 +21,6 @@ jobs:
     steps:
     - name: Check out the repo
       uses: actions/checkout@v2
-    - name: Run HeadLess xvfb server
-      uses: GabrielBB/xvfb-action@v1
     - name: Set up Java
       uses: actions/setup-java@v1
       with:
@@ -34,8 +32,10 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
 
-    - name: Build and test without Modules
-      run: mvn -B test --file pom.xml
+    - name: Build and test without Modules - and xvfb for Robots
+      uses: GabrielBB/xvfb-action@v1
+      with:
+          run: mvn -B test --file pom.xml
       
     - name: Calculate test Coverage
       uses: codecov/codecov-action@v2
