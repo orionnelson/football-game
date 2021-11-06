@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import controller.GameListener;
 import controller.MenubarListener;
+import model.SoccerBall;
 import model.SoccerGame;
 import view.GameMenuBar;
 import view.GamePanel;
@@ -78,6 +79,28 @@ public class TestListener {
 		 Point left = genEvent(KeyEvent.VK_LEFT);
 		 assertTrue(left.x < 0);
 		
+	}
+	
+	
+	@Test
+	@DisplayName("Player Able to Pickup SoccerBall")
+	public void testPlayerPickupBall() {
+		//Sets up the game
+		setupGame();
+		//Teleports the ball to the player 
+		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
+		assertTrue(sg.getActivePlayer().isPlayerHasBall());
+	}
+	
+	
+	@Test
+	@DisplayName("Player able to shoot SoccerBall")
+	public void testPlayerKick() {
+		setupGame();
+		//Teleports the ball to the player 
+		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
+		genEvent(KeyEvent.VK_SPACE);
+		assertTrue(SoccerBall.getSoccerBall().getVelocity()>0.0);
 	}
 	
 	
