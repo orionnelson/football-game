@@ -6,10 +6,11 @@ import org.junit.jupiter.api.Test;
 import controller.GameListener;
 import model.SoccerGame;
 import view.GamePanel;
+import java.awt.Robot;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+import java.awt.AWTException;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
@@ -27,76 +28,57 @@ public class TestListener {
 	@Test
 	@DisplayName("Test Player Moves Up")
 	public void testMovingUP() {
-		 KeyEvent up = genEvent(KeyEvent.VK_UP);
-		 Point mv = MovementHelper(up);
-		assertTrue(mv.y > 0);
+		 Point up = genEvent(KeyEvent.VK_UP);
+		assertTrue(up.y > 0);
 		
 	}
 	
 	@Test
 	@DisplayName("Test Player Moves Down")
 	public void testMovingDown() {
-		 KeyEvent up = genEvent(KeyEvent.VK_DOWN);
-		 Point mv = MovementHelper(up);
-		assertTrue(mv.y < 0);
+		 Point down = genEvent(KeyEvent.VK_DOWN);
+		assertTrue(down.y < 0);
 		
 	}
 	
 	@Test
 	@DisplayName("Test Player Moves Right")
 	public void testMovingRight() {
-		 KeyEvent up = genEvent(KeyEvent.VK_RIGHT);
-		 Point mv = MovementHelper(up);
-		assertTrue(mv.x > 0);
+		 Point right = genEvent(KeyEvent.VK_RIGHT);
+		assertTrue(right.x > 0);
 		
 	}
 	
 	@Test
 	@DisplayName("Test Player Moves Left")
 	public void testMovingLeft() {
-		 KeyEvent up = genEvent(KeyEvent.VK_LEFT);
-		 Point mv = MovementHelper(up);
-		assertTrue(mv.x < 0);
+		 Point left = genEvent(KeyEvent.VK_LEFT);
+		assertTrue(left.x < 0);
 		
 	}
 	
 	
 	
-	public KeyEvent genEvent(int called) {
-		KeyEvent key = new KeyEvent(gamePanel, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  called,'Z');
-	    gamePanel.getKeyListeners()[0].keyPressed(key);
-		return key;
-	}
-	
-	
-	public Point MovementHelper(KeyEvent e) {
-		// Start Game to Simulate Movement 
-		
+	public Point genEvent(int called) {
 		Point pos1  =  sg.getActivePlayer().getPlayerPosition();
-		System.out.println(pos1);
-		//Calls Keypress Method we now check if given event e the player moves accordingly
-		gl.keyPressed(e);
-	    Point pos2 = new Point();
+		try {
+			Robot r = new Robot();
+			r.keyPress(called);
+			r.keyRelease(called);
+			
+		} catch (AWTException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Point pos2 = new Point();
 		if (!sg.isPaused() && !sg.isOver()) {
-			switch (e.getKeyCode()) {
-				case KeyEvent.VK_LEFT:
+		
 					pos2 = sg.getActivePlayer().getPlayerPosition();
-					break;
-				case KeyEvent.VK_RIGHT:
-					pos2 = sg.getActivePlayer().getPlayerPosition();
-					break;
-				case KeyEvent.VK_UP:
-					pos2 = sg.getActivePlayer().getPlayerPosition();
-					break;
-				case KeyEvent.VK_DOWN:
-					pos2 = sg.getActivePlayer().getPlayerPosition();
-					break;
 				
-	}}
+	}
 		int x  = (int) (pos1.getX() - pos2.getX());
 		int y = (int) (pos1.getY()-pos2.getY());
 	return new Point(x,y);
-}
-
-
+	}
+	
 }
