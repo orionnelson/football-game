@@ -66,10 +66,7 @@ public class TestListener {
 	@DisplayName("Test Player Moves Right")
 	public void testMovingRight() {
 		setupGame();
-		 System.out.println(sg.getActivePlayer().getPlayerPosition());
 		 Point right = genEvent(KeyEvent.VK_RIGHT);
-		 System.out.println(right.x);
-		 System.out.println(sg.getActivePlayer().getPlayerPosition());
 		assertTrue(right.x > 0);
 		
 	}
@@ -78,10 +75,7 @@ public class TestListener {
 	@DisplayName("Test Player Moves Left")
 	public void testMovingLeft() {
 		 setupGame();
-		 System.out.println(sg.getActivePlayer().getPlayerPosition());
 		 Point left = genEvent(KeyEvent.VK_LEFT);
-		 System.out.println(left.x);
-		 System.out.println(sg.getActivePlayer().getPlayerPosition());
 		 assertTrue(left.x < 0);
 		
 	}
