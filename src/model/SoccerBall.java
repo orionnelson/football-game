@@ -66,6 +66,10 @@ public class SoccerBall {
 	public void setVelocity(double velocity) {
 		this.velocity = velocity;
 	}
+	
+	public double getVelocity() {
+		return this.velocity;
+	}
 
 	public Point getPosition() {
 		return position;
