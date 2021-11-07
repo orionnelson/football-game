@@ -106,7 +106,7 @@ public class TestListener {
 		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
 		genEvent(KeyEvent.VK_UP);
 		genEvent(KeyEvent.VK_SPACE);
-		assertTrue(SoccerBall.getSoccerBall().getVelocity()>0.0);
+		assertFalse(sg.getActivePlayer().isPlayerHasBall());
 	}
 	
 	@Test 
@@ -169,7 +169,7 @@ public class TestListener {
 		try {
 			Robot r = new Robot();
 			 r.setAutoWaitForIdle(true);
-		     r.delay(400);
+		     r.delay(1500);
 		     r.waitForIdle();
 			r.keyPress(called);r.keyRelease(called);
 			r.keyPress(called);r.keyRelease(called);
