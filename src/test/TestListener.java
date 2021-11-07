@@ -49,8 +49,9 @@ public class TestListener {
 	@Test
 	@DisplayName("Test Player Moves Up")
 	public void testMovingUP() {
-		 setupGame(new Point(265,305));
-		 Point up = genEvent(KeyEvent.VK_UP);
+		setupGame(new Point(265,305));
+		genEvent(KeyEvent.VK_UP);
+		Point up = genEvent(KeyEvent.VK_UP);
 		assertTrue(up.y < 0);
 		
 	}
@@ -59,6 +60,7 @@ public class TestListener {
 	@DisplayName("Test Player Moves Down")
 	public void testMovingDown() {
 		setupGame(new Point(265,305));
+		genEvent(KeyEvent.VK_DOWN);
 		 Point down = genEvent(KeyEvent.VK_DOWN);
 		assertTrue(down.y > 0);
 		
@@ -68,7 +70,8 @@ public class TestListener {
 	@DisplayName("Test Player Moves Right")
 	public void testMovingRight() {
 		setupGame(new Point(265,305));
-		 Point right = genEvent(KeyEvent.VK_RIGHT);
+		genEvent(KeyEvent.VK_RIGHT);
+		Point right = genEvent(KeyEvent.VK_RIGHT);
 		assertTrue(right.x > 0);
 		
 	}
@@ -77,6 +80,7 @@ public class TestListener {
 	@DisplayName("Test Player Moves Left")
 	public void testMovingLeft() {
 		 setupGame(new Point(265,305));
+		 genEvent(KeyEvent.VK_LEFT);
 		 Point left = genEvent(KeyEvent.VK_LEFT);
 		 assertTrue(left.x < 0);
 		
@@ -165,7 +169,7 @@ public class TestListener {
 		try {
 			Robot r = new Robot();
 			 r.setAutoWaitForIdle(true);
-		     r.delay(700);
+		     r.delay(400);
 		     r.waitForIdle();
 			r.keyPress(called);r.keyRelease(called);
 			r.keyPress(called);r.keyRelease(called);
