@@ -89,7 +89,7 @@ public class TestModels{
 	
 	
 	@Test
-	@DisplayName("Test If Get Striker is working")
+	@DisplayName("Test Striker is not Null in GetGamePlayers")
 	public void getStriker() {
 		setupGame(new Point(265,305));
 		//Teleports the ball to the player 
@@ -99,7 +99,7 @@ public class TestModels{
 	
 	
 		@Test
-		@DisplayName("Test If Get Goalie is working")
+		@DisplayName("Test Goalie is not null in getGamePlayers")
 		public void getGoalie() {
 			setupGame(new Point(265,305));
 			//Teleports the ball to the player 
