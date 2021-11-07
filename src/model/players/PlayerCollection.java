@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class PlayerCollection implements Iterable<GamePlayer>{
 
-	List<GamePlayer> playerList;
+	private List<GamePlayer> playerList;
 
 	public PlayerCollection() {
 		playerList = new ArrayList<>();

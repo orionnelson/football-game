@@ -2,7 +2,7 @@ package model.players;
 
 public class PlayerStatistics {
 	
-	int goalCount = 0;
+	private int goalCount = 0;
 
 	public Integer getStatistics() {
 		return goalCount;

@@ -6,7 +6,7 @@ import java.util.ListIterator;
 
 public class PlayerCollectionIterator implements Iterator<GamePlayer>{
 	
-	ListIterator<GamePlayer> iterator;
+	private ListIterator<GamePlayer> iterator;
 	
 	public PlayerCollectionIterator(List<GamePlayer> players) {
 		iterator = players.listIterator();
