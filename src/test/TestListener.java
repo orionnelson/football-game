@@ -101,7 +101,7 @@ public class TestListener {
 	@Test
 	@DisplayName("Player able to shoot SoccerBall")
 	public void testPlayerKick() {
-		setupGame(new Point(265,305));
+		setupGame(new Point(450,305));
 		//Teleports the ball to the player 
 		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
 		genEvent(KeyEvent.VK_UP);
