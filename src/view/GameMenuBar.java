@@ -4,8 +4,17 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
+/**
+ * This class extends JMenuBar and represents the Menu for 
+ * user to pick options.
+ *
+ */
 public class GameMenuBar extends JMenuBar {
 
+	/**
+	 * Constructor to initialize the menu bar with items.
+	 * @param menubarListener
+	 */
 	public GameMenuBar(ActionListener menubarListener) {
 		super();
 		JMenu gameMenu = new JMenu("Game");
@@ -19,6 +28,14 @@ public class GameMenuBar extends JMenuBar {
 		super.add(controlMenu);
 	}
 
+	/**
+	 * Helper method to constructor to create the menu.
+	 * @param text
+	 * @param actionCommand
+	 * @param accelerator
+	 * @param listener
+	 * @return created menu item.
+	 */
 	private JMenuItem createMenuItem(String text, String actionCommand, int accelerator, ActionListener listener) {
 		JMenuItem menuItem = new JMenuItem(text);
 		menuItem.setActionCommand(actionCommand);

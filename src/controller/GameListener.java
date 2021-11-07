@@ -5,20 +5,41 @@ import view.GamePanel;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+/**
+ * This class extends KeyListener and listens for input
+ * from the player.
+ */
 public class GameListener implements KeyListener {
 
+	/**
+	 * Game panel instance
+	 */
 	private final GamePanel gamePanel;
 
+	/**
+	 * This is the constructor for GameListener
+	 * @param panel represents the GamePanel
+	 */
 	public GameListener(GamePanel panel) {
 		gamePanel = panel;
 	}
 
+	
+	/**
+	 * Unneeded overridden method from KeyListener 
+	 * left empty
+	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
 
 	}
 
+	
+	/**
+	 * This method listens for keyboard input from user 
+	 * to move striker and shoot.
+	 * @param e represents input from user
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		SoccerGame soccerGame = gamePanel.getGame();
@@ -45,6 +66,11 @@ public class GameListener implements KeyListener {
 		}
 	}
 
+	
+	/**
+	 * Unneeded overridden method from KeyListener 
+	 * left empty
+	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
 

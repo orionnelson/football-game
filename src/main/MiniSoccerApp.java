@@ -6,8 +6,16 @@ import view.GamePanel;
 
 import javax.swing.*;
 
-public class MiniSoccerApp {
+/**
+ * Class to run soccer program.
+ */
 
+public class MiniSoccerApp {
+	
+	/**
+	 * This is the main method of the soccer program.
+	 * @param args is command-line arguments.
+	 */
 	public static void main(String[] args) {
 		JFrame gameFrame = new JFrame("Mini Soccer");
 		GamePanel gamePanel = new GamePanel();

@@ -10,13 +10,26 @@ import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
+/**
+ * This class extends JPanel and represents the main panel
+ * of the soccer game.
+ *
+ */
 public class GamePanel extends JPanel {
 
+	/**
+	 * Represents the font of panel
+	 */
 	private final Font uiFont;
 
+	/**
+	 * Represents the soccer game.
+	 */
 	private SoccerGame game;
 
+	/**
+	 * Constructor to initialize panel and set font.
+	 */
 	public GamePanel() {
 		super(null);
 		super.setBackground(new Color(112, 176, 49));
@@ -25,10 +38,16 @@ public class GamePanel extends JPanel {
 		setupRepaint();
 	}
 
+	/**
+	 * Helper method for the constructor to create soccer game.
+	 */
 	public void setupSoccerGame() {
 		game = new SoccerGame();
 	}
 
+	/**
+	 * Helper method with timer to repaint.
+	 */
 	private void setupRepaint() {
 		java.util.Timer timer = new Timer();
 		TimerTask repaintTask = new TimerTask() {
@@ -40,10 +59,18 @@ public class GamePanel extends JPanel {
 		timer.schedule(repaintTask, 0, 10);
 	}
 
+	/**
+	 * Get instance of the soccer game.
+	 * @return SoccerGame
+	 */
 	public SoccerGame getGame() {
 		return game;
 	}
 
+	/**
+	 * Method to paint and display game components.
+	 * @param g represents the Graphics.
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -57,6 +84,10 @@ public class GamePanel extends JPanel {
 		paintStatistics(g);
 	}
 
+	/**
+	 * A method to paint the paused text if paused.
+	  * @param g represents the Graphics.
+	 */
 	private void paintPausedText(Graphics g) {
 		if (getGame().isPaused()) {
 			g.setColor(Color.red);
@@ -65,6 +96,10 @@ public class GamePanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Paints to display gate during the soccer game.
+	 * @param g represents the Graphics.
+	 */
 	private void paintGate(Graphics g) {
 		g.setColor(Color.white);
 		g.fillRect(200, 10, 200, 50);
@@ -73,23 +108,39 @@ public class GamePanel extends JPanel {
 		g.drawString("Gate", 280, 40);
 	}
 
+	/**
+	 * Paints to display penalty line during the soccer game.
+	 * @param g represents the Graphics.
+	 */
 	private void paintPenaltyLine(Graphics g) {
 		g.setColor(Color.darkGray);
 		g.drawLine(0, 200, 600, 200);
 	}
 
+	/**
+	 * Paints to display timer during the soccer game.
+	 * @param g represents the Graphics.
+	 */
 	private void paintTimer(Graphics g) {
 		g.setColor(Color.black);
 		g.setFont(uiFont);
 		g.drawString("Time: " + getGame().getTimeRemaining(), 20, 25);
 	}
 
+	/**
+	 * Paints to display goal during the soccer game.
+	 * @param g represents the Graphics.
+	 */
 	private void paintGoal(Graphics g) {
 		g.setColor(Color.black);
 		g.setFont(uiFont);
 		g.drawString("Goal: " + game.getGoal(), 20, 50);
 	}
 
+	/**
+	 * Paints to display player during the soccer game.
+	 * @param g represents the Graphics.
+	 */
 	private void paintPlayers(Graphics g) {
 		PlayerCollection gamePlayers = game.getGamePlayers();
 		for (GamePlayer player : gamePlayers) {
@@ -106,12 +157,21 @@ public class GamePanel extends JPanel {
 		}
 	}
 
+	
+	/**
+	 * Paints to display ball during the soccer game.
+	 * @param g represents the Graphics.
+	 */
 	private void paintBall(Graphics g) {
 		SoccerBall soccerBall = SoccerBall.getSoccerBall();
 		g.setColor(soccerBall.getColor());
 		g.fillOval(soccerBall.getPosition().x, soccerBall.getPosition().y, 20, 20);
 	}
 
+	/**
+	 * Paints to display player statistics during the soccer game.
+	 * @param g represents the Graphics.
+	 */
 	private void paintStatistics(Graphics g) {
 		if (getGame().isOver()) {
 			g.setColor(Color.red);
