@@ -106,7 +106,7 @@ public class TestListener {
 		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
 		genEvent(KeyEvent.VK_UP);
 		genEvent(KeyEvent.VK_SPACE);
-		assertTrue(SoccerBall.getSoccerBall().getVelocity()>0.0);
+		assertFalse(sg.getActivePlayer().isPlayerHasBall());
 	}
 	
 	@Test 
