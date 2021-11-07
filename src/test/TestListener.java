@@ -169,7 +169,7 @@ public class TestListener {
 		try {
 			Robot r = new Robot();
 			 r.setAutoWaitForIdle(true);
-		     r.delay(400);
+		     r.delay(1500);
 		     r.waitForIdle();
 			r.keyPress(called);r.keyRelease(called);
 			r.keyPress(called);r.keyRelease(called);
