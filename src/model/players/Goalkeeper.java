@@ -81,14 +81,23 @@ public class Goalkeeper extends GamePlayer {
 	 */
 	public void moveRandomly() {
 		Random random = new Random();
-		double playerCurrentXPosition = (double) getPlayerPosition().x + 15;
-		double chanceOfMovingLeft = (playerCurrentXPosition - 300) / 100 - (random.nextGaussian());
+		double SoccerBallPositionY = (double) SoccerBall.getSoccerBall().getPosition().y;
+		double playerCurrentPositionX = (double) getPlayerPosition().x + 15;
+		double chanceOfMovingUp = (SoccerBallPositionY-255)/ 30 -(random.nextGaussian());
+		double chanceOfMovingLeft = (playerCurrentPositionX - 300) / 100 - (random.nextGaussian());
 		movementStep = (int) Math.abs(30 * chanceOfMovingLeft);
 		if (chanceOfMovingLeft > 0) {
 			moveLeft();
 		} else {
 			moveRight();
 		}
+		
+		if (chanceOfMovingUp > 0 && getPlayerPosition().y > 70) {
+			moveUp();
+		} else{
+     	  moveDown();
+		}
+		
 	}
 
 	/**
