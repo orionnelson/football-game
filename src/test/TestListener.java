@@ -32,7 +32,7 @@ public class TestListener {
 	public static MenubarListener menubarListener = new MenubarListener(gamePanel);
 	public static GameMenuBar gameMenuBar = new GameMenuBar(menubarListener);
 	SoccerGame sg = gamePanel.getGame();
-	public void setupGame() {
+	public void setupGame(Point sp) {
 		gameFrame.add(gamePanel);
 		gameFrame.addKeyListener(gl);
 		gameFrame.setJMenuBar(gameMenuBar);
@@ -41,14 +41,15 @@ public class TestListener {
 		gameFrame.setLocationRelativeTo(null);
 		gameFrame.setResizable(false);
 		gameFrame.setVisible(true);
-		 Point sp = new Point(265,305);
-		 sg.getActivePlayer().setPlayerPosition(sp);
+		sg.getActivePlayer().setPlayerPosition(sp);
+		genEvent(KeyEvent.VK_R);
+		 
 	}
 	
 	@Test
 	@DisplayName("Test Player Moves Up")
 	public void testMovingUP() {
-		 setupGame();
+		 setupGame(new Point(265,305));
 		 Point up = genEvent(KeyEvent.VK_UP);
 		assertTrue(up.y < 0);
 		
@@ -57,7 +58,7 @@ public class TestListener {
 	@Test
 	@DisplayName("Test Player Moves Down")
 	public void testMovingDown() {
-		setupGame();
+		setupGame(new Point(265,305));
 		 Point down = genEvent(KeyEvent.VK_DOWN);
 		assertTrue(down.y > 0);
 		
@@ -66,7 +67,7 @@ public class TestListener {
 	@Test
 	@DisplayName("Test Player Moves Right")
 	public void testMovingRight() {
-		setupGame();
+		setupGame(new Point(265,305));
 		 Point right = genEvent(KeyEvent.VK_RIGHT);
 		assertTrue(right.x > 0);
 		
@@ -75,7 +76,7 @@ public class TestListener {
 	@Test
 	@DisplayName("Test Player Moves Left")
 	public void testMovingLeft() {
-		 setupGame();
+		 setupGame(new Point(265,305));
 		 Point left = genEvent(KeyEvent.VK_LEFT);
 		 assertTrue(left.x < 0);
 		
@@ -86,7 +87,7 @@ public class TestListener {
 	@DisplayName("Player Able to Pickup SoccerBall")
 	public void testPlayerPickupBall() {
 		//Sets up the game
-		setupGame();
+		setupGame(new Point(265,305));
 		//Teleports the ball to the player 
 		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
 		assertTrue(sg.getActivePlayer().isPlayerHasBall());
@@ -96,12 +97,65 @@ public class TestListener {
 	@Test
 	@DisplayName("Player able to shoot SoccerBall")
 	public void testPlayerKick() {
-		setupGame();
+		setupGame(new Point(265,305));
 		//Teleports the ball to the player 
 		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
 		genEvent(KeyEvent.VK_SPACE);
 		assertTrue(SoccerBall.getSoccerBall().getVelocity()>0.0);
 	}
+	
+	@Test 
+	@DisplayName("Shot Out of bounds does not Count")
+	public void shotMissNet() {
+		setupGame(new Point(450,305));
+		int cgl = sg.getActivePlayer().getPlayerStatistics();
+		genEvent(KeyEvent.VK_RIGHT);
+		genEvent(KeyEvent.VK_RIGHT);  
+		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
+		genEvent(KeyEvent.VK_SPACE);
+		assertEquals(sg.getActivePlayer().getPlayerStatistics()-cgl,0);
+		
+	}
+	
+	@Test 
+	@DisplayName("Teleporting the ball into the goal counts as a goal")
+	public void runGoal() {
+		setupGame(new Point(450,305));
+		int cgl = sg.getActivePlayer().getPlayerStatistics();
+		SoccerBall.getSoccerBall().setPosition(new Point(181,11));
+		genEvent(KeyEvent.VK_R);
+		
+		assertEquals(sg.getActivePlayer().getPlayerStatistics()-cgl,1);
+		
+	}
+	
+	@Test
+	@DisplayName("The Player Cannot run into the net")
+	public void runPlayerStupid() {
+		setupGame(new Point(265,200));
+		int cgl = sg.getActivePlayer().getPlayerStatistics();
+		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
+		genEvent(KeyEvent.VK_UP);
+		genEvent(KeyEvent.VK_UP);
+		genEvent(KeyEvent.VK_UP);
+		genEvent(KeyEvent.VK_UP);
+		genEvent(KeyEvent.VK_UP);
+		assertEquals(sg.getActivePlayer().getPlayerStatistics()-cgl,0);
+	}
+	
+	
+	@Test 
+	@DisplayName("Test Ball Stops On Game Pause")
+	public void runShootPause() {
+		setupGame(new Point(265,305));
+		//Teleports the ball to the player 
+		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
+		genEvent(KeyEvent.VK_SPACE);
+		genEvent(KeyEvent.VK_P);
+		assertEquals(SoccerBall.getSoccerBall().getVelocity(),0.0);
+		
+	}
+	
 	
 	
 	
@@ -110,7 +164,7 @@ public class TestListener {
 		try {
 			Robot r = new Robot();
 			 r.setAutoWaitForIdle(true);
-		     r.delay(1500);
+		     r.delay(700);
 		     r.waitForIdle();
 			r.keyPress(called);r.keyRelease(called);
 			r.keyPress(called);r.keyRelease(called);
