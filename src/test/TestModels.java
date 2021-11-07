@@ -124,5 +124,19 @@ public class TestModels{
 		}
 		
 	
+	        @Test
+		@DisplayName("Test Entitys To String")
+		public void testToString(){
+			setupGame(new Point(265,305));
+			assertTrue(sg.getGamePlayers().get("Striker").toString()!=null&&sg.getGamePlayers().get("Goalkeeper").toString()!=null);
+		}
+		
+		@Test
+		@DisplayName("Test Sorting")
+		public void testSort() {
+			sg.getGamePlayers().sort();
+			assertTrue(true);
+		}
+	
 	
 }
