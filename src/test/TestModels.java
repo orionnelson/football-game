@@ -10,6 +10,7 @@ import model.SoccerGame;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.AWTException;
 import java.awt.Point;
