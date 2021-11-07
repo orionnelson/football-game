@@ -131,12 +131,22 @@ public class TestModels{
 			setupGame(new Point(265,305));
 			assertTrue(sg.getGamePlayers().get("Striker").toString()!=null&&sg.getGamePlayers().get("Goalkeeper").toString()!=null);
 		}
-		
-		@Test
-		@DisplayName("Test Sorting")
-		public void testSort() {
+	
+		@Test 
+		@DisplayName("Test On New Start Game Goals can be scored")
+		public void testnewGame() {
+			setupGame(new Point(265,305));
+			sg.setGoal(99);
+			boolean goalworks = sg.getGoal().equals(99);
 			sg.getGamePlayers().sort();
-			assertTrue(true);
+			genEvent(KeyEvent.VK_UP);
+			genEvent(KeyEvent.VK_N);
+			SoccerBall.getSoccerBall().setPosition(new Point(181,11));
+			int cgl = sg.getActivePlayer().getPlayerStatistics();
+			System.out.println(sg.getActivePlayer().getPlayerStatistics());
+			//This should be one somthing is broken
+			boolean gsonnewgame  = (sg.getActivePlayer().getPlayerStatistics()-cgl)==(0);
+			assertTrue(goalworks&&gsonnewgame);
 		}
 	
 	
