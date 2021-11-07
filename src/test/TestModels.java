@@ -10,7 +10,6 @@ import model.SoccerGame;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.AWTException;
 import java.awt.Point;
@@ -112,7 +111,7 @@ public class TestModels{
 		public void testGoalieStats() {
 			setupGame(new Point(265,305));
 			//Teleports the ball to the player 
-			assertTrue(sg.getGamePlayers().get("Goalkeeper").getPlayerStatistics()>=0);
+			assertEquals(sg.getGamePlayers().get("Goalkeeper").getPlayerStatistics()>=0,true);
 		}
 		
 		
@@ -121,7 +120,7 @@ public class TestModels{
 		public void testStrikerStats() {
 			setupGame(new Point(265,305));
 			//Teleports the ball to the player 
-			assertTrue(sg.getGamePlayers().get("Striker").getPlayerStatistics()>=0);
+			assertEquals(sg.getGamePlayers().get("Striker").getPlayerStatistics()>=0,true);
 		}
 		
 	
