@@ -156,7 +156,7 @@ public boolean isWindows(){
 	System.out.println(opaused);
 	System.out.println(paused);
 	if (isWindows()){
-	assertTrue(opaused && !paused);
+	assertTrue(!opaused && !paused);
 	}else{
         assertTrue(!opaused && !paused);
 	}
