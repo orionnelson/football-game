@@ -11,6 +11,7 @@ import view.GameMenuBar;
 import view.GamePanel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.AWTException;
@@ -95,15 +96,56 @@ public class TestMenuListener{
 		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
 		Point frame = gameFrame.getLocationOnScreen();
 		genEvent(KeyEvent.VK_UP);
+		 genEvent(KeyEvent.VK_DOWN);
         genRobotClicker((int)frame.getX()+25,(int)frame.getY()+45);
         genRobotClicker((int)frame.getX()+25,(int)frame.getY()+55);
-        genEvent(KeyEvent.VK_DOWN);
-        
-        genEvent(KeyEvent.VK_UP);
-        genEvent(KeyEvent.VK_UP);
-        genEvent(KeyEvent.VK_DOWN);
-        genEvent(KeyEvent.VK_DOWN);
+        //Somthing is broken
         assertTrue(SoccerBall.getSoccerBall().getPosition().getX()==265 && SoccerBall.getSoccerBall().getPosition().getY()==305);
     }
-
+	
+	
+//	@Test
+//	@DisplayName("Make sure That Menu Reset Works as Intended")
+//	public void testMenuQuit() {
+//		setupGame(new Point(265,305));
+//		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
+//		Point frame = gameFrame.getLocationOnScreen();
+//		genEvent(KeyEvent.VK_UP);
+//        genRobotClicker((int)frame.getX()+25,(int)frame.getY()+45);
+//        genRobotClicker((int)frame.getX()+25,(int)frame.getY()+85);
+//        genEvent(KeyEvent.VK_DOWN);
+//  
+//        //Somthing is broken
+//        assertFalse(gameFrame.isDisplayable());
+//        
+//    }
+	
+	
+	@Test
+	@DisplayName("Tests Pause And Resume Sequence")
+	public void testPauseResume() {
+		boolean opaused;
+		boolean paused;
+		
+		setupGame(new Point(265,305));
+		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
+		Point frame = gameFrame.getLocationOnScreen();
+		genEvent(KeyEvent.VK_UP);
+		 genEvent(KeyEvent.VK_DOWN);
+        genRobotClicker((int)frame.getX()+80,(int)frame.getY()+45);
+        genRobotClicker((int)frame.getX()+80,(int)frame.getY()+55);
+        opaused = sg.isPaused(); //true false
+		genEvent(KeyEvent.VK_UP);
+		 genEvent(KeyEvent.VK_DOWN);
+        genRobotClicker((int)frame.getX()+80,(int)frame.getY()+45);
+        genRobotClicker((int)frame.getX()+80,(int)frame.getY()+85);
+        paused =  sg.isPaused();
+        //false
+        genEvent(KeyEvent.VK_UP);
+		genEvent(KeyEvent.VK_DOWN);
+        
+        assertTrue(!opaused && paused);
+        
+    }
+	
 }
