@@ -89,18 +89,18 @@ public class TestMenuListener{
 	}
 
 	
-	@Test
+        @Test
 	@DisplayName("Make sure That Menubar Reset Works as Intended")
-    public void testMenuReset() {
+         public void testMenuReset() {
 		setupGame(new Point(265,305));
 		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
 		Point frame = gameFrame.getLocationOnScreen();
 		genEvent(KeyEvent.VK_UP);
-		 genEvent(KeyEvent.VK_DOWN);
+		genEvent(KeyEvent.VK_DOWN);
         genRobotClicker((int)frame.getX()+25,(int)frame.getY()+45);
         genRobotClicker((int)frame.getX()+25,(int)frame.getY()+55);
         //Somthing is broken
-        assertTrue(SoccerBall.getSoccerBall().getPosition().getX()==265 && SoccerBall.getSoccerBall().getPosition().getY()==305);
+        assertTrue(SoccerBall.getSoccerBall().getPosition().getX()==255 && SoccerBall.getSoccerBall().getPosition().getY()==360);
     }
 	
 	
