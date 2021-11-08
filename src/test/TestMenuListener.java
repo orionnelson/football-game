@@ -144,7 +144,10 @@ public class TestMenuListener{
         genEvent(KeyEvent.VK_UP);
 		genEvent(KeyEvent.VK_DOWN);
         
-        assertTrue(!opaused && paused);
+	System.out.println(opaused);
+	System.out.println(!paused);
+		
+        assertTrue(opaused && !paused);
         
     }
 	
