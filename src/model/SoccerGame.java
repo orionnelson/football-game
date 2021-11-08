@@ -94,7 +94,7 @@ public class SoccerGame {
 	
 	/**
 	 * Set the time remaining
-	 * @param timeRemaining
+	 * @param timeRemaining  Returns the time remaining
 	 */
 	public void setTimeRemaining(Integer timeRemaining) {
 		this.timeRemaining = timeRemaining;

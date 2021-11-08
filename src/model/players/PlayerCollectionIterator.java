@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * This class implements Iterator<GamePlayer>
+ * This class implements Iterator to get the collection of players
  * and represents the iterator for the PlayerCollection.
  * It allows iterating the collection of players.
  */

@@ -5,8 +5,8 @@ import model.SoccerBall;
 import java.awt.*;
 
 /**
- * This class implements Comparable<GamePlayer>
- * and represents players of the game.
+ * This is an abstract class that implements Comparable to get final score 
+ * and represents players (goal keeper and player) of the game.  
  *
  */
 public abstract class GamePlayer implements Comparable<GamePlayer> {

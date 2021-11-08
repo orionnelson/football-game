@@ -13,7 +13,8 @@ public class GameMenuBar extends JMenuBar {
 
 	/**
 	 * Constructor to initialize the menu bar with items.
-	 * @param menubarListener
+	 * @param menubarListener  Listens for keyboard input allows the user to create a
+	 * a new game (N), pause (P) , resume (R), or exit (E)
 	 */
 	public GameMenuBar(ActionListener menubarListener) {
 		super();
@@ -30,10 +31,10 @@ public class GameMenuBar extends JMenuBar {
 
 	/**
 	 * Helper method to constructor to create the menu.
-	 * @param text
-	 * @param actionCommand
-	 * @param accelerator
-	 * @param listener
+	 * @param text Used to create generic text for menu
+	 * @param actionCommand Action defined for user interaction (in this case, New, Exit, Pause, and Resume)
+	 * @param accelerator The keyboard input received by the user
+	 * @param listener Required for each menu item as it is used to capture the action event
 	 * @return created menu item.
 	 */
 	private JMenuItem createMenuItem(String text, String actionCommand, int accelerator, ActionListener listener) {

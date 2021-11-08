@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * This class extends Iterable<GamePlayer> 
- * and represents a collection of players as an ArrayList 
+ * This class extends Iterable to iterate through a collection of players 
+ * and represents the collection of players as an ArrayList 
  * which includes Striker and Goalkeeper.
  *
  */
@@ -62,7 +62,7 @@ public class PlayerCollection implements Iterable<GamePlayer>{
 
 	/**
 	 * Get a iterator for playerList based on PlayerCollectionIterator.
-	 * @returns Iterator<GamePlayer> to iterate player list.
+	 * @return Returns of a collection players
 	 */
 	@Override
 	public Iterator<GamePlayer> iterator() {
