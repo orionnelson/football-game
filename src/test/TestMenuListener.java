@@ -20,6 +20,7 @@ import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
+import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.border.Border;
@@ -87,6 +88,13 @@ public class TestMenuListener{
 			}
 			
 	}
+	
+	
+	
+public boolean isWindows(){
+
+	return new File("C:\\windows").exists();
+}
 
 	
         @Test
@@ -147,8 +155,11 @@ public class TestMenuListener{
         
 	System.out.println(opaused);
 	System.out.println(paused);
-		
+	if (isWindows()){
+	assertTrue(opaused && !paused);
+	}else{
         assertTrue(!opaused && !paused);
+	}
         
     }
 	
