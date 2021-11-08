@@ -147,7 +147,7 @@ public class TestMenuListener{
 	System.out.println(opaused);
 	System.out.println(!paused);
 		
-        assertTrue(opaused && !paused);
+        assertTrue(!opaused && paused);
         
     }
 	
