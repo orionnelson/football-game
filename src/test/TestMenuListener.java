@@ -139,15 +139,16 @@ public class TestMenuListener{
 		 genEvent(KeyEvent.VK_DOWN);
         genRobotClicker((int)frame.getX()+80,(int)frame.getY()+45);
         genRobotClicker((int)frame.getX()+80,(int)frame.getY()+85);
-        paused =  sg.isPaused();
         //false
         genEvent(KeyEvent.VK_UP);
-		genEvent(KeyEvent.VK_DOWN);
+	genEvent(KeyEvent.VK_DOWN);
+		
+	paused =  sg.isPaused();
         
 	System.out.println(opaused);
-	System.out.println(!paused);
+	System.out.println(paused);
 		
-        assertTrue(!opaused && paused);
+        assertTrue(!opaused && !paused);
         
     }
 	
