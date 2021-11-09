@@ -1,3 +1,0 @@
-ignore:
-  - "src/test/*"  # ignore folders and all its contents
-  - "src/controller/MenubarListener.java"       # wildcards accepted
