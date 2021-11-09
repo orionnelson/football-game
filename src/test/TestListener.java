@@ -11,7 +11,12 @@ import view.GameMenuBar;
 import view.GamePanel;
 import java.awt.Robot;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+
 
 import java.awt.AWTException;
 import java.awt.Point;
