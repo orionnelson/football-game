@@ -39,7 +39,8 @@
   <version>0.8.7</version>
         <configuration>
         <excludes>
-            <exclude>**/football-game/src/test/*</exclude>
+            <exclude>/src/test/*</exclude>
+           <exclude>/src/controller/MenubarListener.java</exclude>
         </excludes>
     </configuration>
                <executions>
