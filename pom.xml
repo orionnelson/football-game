@@ -39,8 +39,8 @@
   <version>0.8.7</version>
         <configuration>
         <excludes>
-            <exclude>src/test/*</exclude>
-           <exclude>src/controller/MenubarListener.java</exclude>
+            <exclude>com/src/test/*</exclude>
+           <exclude>com/src/controller/MenubarListener.java</exclude>
         </excludes>
     </configuration>
                <executions>
