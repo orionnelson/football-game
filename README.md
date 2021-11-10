@@ -67,9 +67,15 @@ including `pause` and `resume` will be disabled until a new `SoccerGame` is star
 
 ### Testing Methods 
 ## Testing Was Done Using GitHub Workflows
-Using github workflows for testing we were able to automaticly generate our testing coverage and evaluate 
+Using github workflows for testing we were able to automaticly generate our testing coverage and evaluating test cases to rule out bugs in the code. 
 
-![Model Cover] (https://or9.ca/soccer/testitems/model%20coverage.png)
+| ![Model Cover](https://or9.ca/soccer/testitems/model%20coverage.png) |
+
+## Test Case Breakdown
+
+The 
+
+
 
 
 
