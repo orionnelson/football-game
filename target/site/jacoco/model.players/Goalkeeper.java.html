@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Goalkeeper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">football-game</a> &gt; <a href="index.source.html" class="el_package">model.players</a> &gt; <span class="el_source">Goalkeeper.java</span></div><h1>Goalkeeper.java</h1><pre class="source lang-java linenums">package model.players;
+
+import model.SoccerBall;
+
+import java.awt.*;
+import java.util.Random;
+
+/**
+ * This class extends GamePlayer and represents 
+ * the goalkeeper of the game.
+ */
+public class Goalkeeper extends GamePlayer {
+
+	/**
+	 * Represents the movement steps.
+	 */
+	private int movementStep;
+
+	/**
+	 * Constructor of class to initialize name and color
+	 * and movement steps.
+	 * @param name is the name of the Goalkeeper.
+	 * @param color is the color of the Goalkeeper.
+	 */
+	public Goalkeeper(String name, Color color) {
+<span class="fc" id="L26">		super(name, color);</span>
+<span class="fc" id="L27">		movementStep = 10;</span>
+<span class="fc" id="L28">	}</span>
+
+	
+	/**
+	 * Moves the Goalkeeper to the left.
+	 */
+	@Override
+	public void moveLeft() {
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">		if (getPlayerPosition().x - 5 - movementStep &gt; 0) {</span>
+<span class="fc" id="L37">			setPlayerPosition(new Point(getPlayerPosition().x - movementStep, getPlayerPosition().y));</span>
+		}
+<span class="fc" id="L39">	}</span>
+
+	/**
+	 * Moves the Goalkeeper to the right.
+	 */
+	@Override
+	public void moveRight() {
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">		if (getPlayerPosition().x + 50 + movementStep &lt; 600) {</span>
+<span class="fc" id="L47">			setPlayerPosition(new Point(getPlayerPosition().x + movementStep, getPlayerPosition().y));</span>
+		}
+<span class="fc" id="L49">	}</span>
+
+	/**
+	 * Moves the Goalkeeper up.
+	 */
+	@Override
+	public void moveUp() {
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">		if (getPlayerPosition().y - 5 &gt; 0) {</span>
+<span class="fc" id="L57">			setPlayerPosition(new Point(getPlayerPosition().x, getPlayerPosition().y - 5));</span>
+		}
+<span class="fc" id="L59">	}</span>
+
+	/**
+	 * Moves the Goalkeeper down.
+	 */
+	@Override
+	public void moveDown() {
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">		if (getPlayerPosition().y + 50 &lt; 300) {</span>
+<span class="fc" id="L67">			setPlayerPosition(new Point(getPlayerPosition().x, getPlayerPosition().y + 5));</span>
+		}
+<span class="fc" id="L69">	}</span>
+
+	/**
+	 * Shoots the ball.
+	 */
+	@Override
+	public void shootBall() {
+<span class="fc" id="L76">		SoccerBall.getSoccerBall().moveBall(-20, -5.0, -0.05);</span>
+<span class="fc" id="L77">	}</span>
+
+	/**
+	 * Moves the Goalkeeper to a random position near goal.
+	 */
+	public void moveRandomly() {
+<span class="fc" id="L83">		Random random = new Random();</span>
+<span class="fc" id="L84">		double SoccerBallPositionY = (double) SoccerBall.getSoccerBall().getPosition().y;</span>
+<span class="fc" id="L85">		double playerCurrentPositionX = (double) getPlayerPosition().x + 15;</span>
+<span class="fc" id="L86">		double chanceOfMovingUp = (SoccerBallPositionY-255)/ 30 -(random.nextGaussian());</span>
+<span class="fc" id="L87">		double chanceOfMovingLeft = (playerCurrentPositionX - 300) / 100 - (random.nextGaussian());</span>
+<span class="fc" id="L88">		movementStep = (int) Math.abs(30 * chanceOfMovingLeft);</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">		if (chanceOfMovingLeft &gt; 0) {</span>
+<span class="fc" id="L90">			moveLeft();</span>
+<span class="fc" id="L91">		} else {</span>
+<span class="fc" id="L92">			moveRight();</span>
+		}
+		
+<span class="fc bfc" id="L95" title="All 4 branches covered.">		if (chanceOfMovingUp &gt; 0 &amp;&amp; getPlayerPosition().y &gt; 70) {</span>
+<span class="fc" id="L96">			moveUp();</span>
+<span class="fc" id="L97">		} else{</span>
+<span class="fc" id="L98">     	  moveDown();</span>
+		}
+		
+<span class="fc" id="L101">	}</span>
+
+	/**
+	 * Sets the initial position
+	 */
+	@Override
+	public void setInitialPosition() {
+<span class="fc" id="L108">		setPlayerPosition(new Point(280, 70));</span>
+<span class="fc" id="L109">	}</span>
+
+	/**
+	 * Prints the statistics of Goalkeeper.
+	 */
+	@Override
+	public String toString() {
+<span class="fc" id="L116">		return playerName + &quot; caught &quot; + playerStatistics.toString() + &quot; balls&quot;;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

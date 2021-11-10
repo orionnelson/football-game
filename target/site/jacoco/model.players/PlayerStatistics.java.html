@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlayerStatistics.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">football-game</a> &gt; <a href="index.source.html" class="el_package">model.players</a> &gt; <span class="el_source">PlayerStatistics.java</span></div><h1>PlayerStatistics.java</h1><pre class="source lang-java linenums">package model.players;
+
+/**
+ * This class represents player statistics 
+ * either count of catches or goals scored.
+ */
+<span class="fc" id="L7">public class PlayerStatistics {</span>
+	
+	/**
+	 * Represents numerical statistic of either
+	 * count of goals or catches.
+	 */
+<span class="fc" id="L13">	private int count = 0;</span>
+
+	/**
+	 * Get the statistic of player.
+	 * @return the count of goals or catches.
+	 */
+	public Integer getStatistics() {
+<span class="fc" id="L20">		return count;</span>
+	}
+
+	/**
+	 * Sets the statistics of player.
+	 * @param newStatistics is the integer count change.
+	 */
+	public void setStatistics(Integer newStatistics) {
+<span class="fc" id="L28">		count = newStatistics;</span>
+<span class="fc" id="L29">	}</span>
+	
+	/**
+	 * Get a string representation of player statistics.
+	 * @return Converts the number to an Integer
+	 */
+	public String toString(){
+<span class="fc" id="L36">		return Integer.toString(getStatistics());</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

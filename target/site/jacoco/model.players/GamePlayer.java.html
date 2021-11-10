@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GamePlayer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">football-game</a> &gt; <a href="index.source.html" class="el_package">model.players</a> &gt; <span class="el_source">GamePlayer.java</span></div><h1>GamePlayer.java</h1><pre class="source lang-java linenums">package model.players;
+
+import model.SoccerBall;
+
+import java.awt.*;
+
+/**
+ * This is an abstract class that implements Comparable to get final score 
+ * and represents players (goal keeper and player) of the game.  
+ *
+ */
+public abstract class GamePlayer implements Comparable&lt;GamePlayer&gt; {
+
+	/**
+	 * Represents the name of a player as String.
+	 */
+	protected final String playerName;
+
+	/**
+	 * Represents the color of a player using Color.
+	 */
+	protected final Color playerColor;
+
+	/**
+	 * Represents the player position as a Point
+	 */
+	protected Point playerPosition;
+
+	/**
+	 * Represents statistics of player as PlayerStatistics
+	 */
+	protected final PlayerStatistics playerStatistics;
+
+	/**
+	 * Constructor for the player.
+	 * @param name is the name of player
+	 * @param color is the color of player
+	 */
+<span class="fc" id="L39">	public GamePlayer(String name, Color color) {</span>
+<span class="fc" id="L40">		playerName = name;</span>
+<span class="fc" id="L41">		playerColor = color;</span>
+<span class="fc" id="L42">		playerStatistics = new PlayerStatistics();</span>
+<span class="fc" id="L43">		setInitialPosition();</span>
+<span class="fc" id="L44">	}</span>
+
+	/**
+	 * Checks to see if player has the ball
+	 * @return true or false.
+	 */
+	public boolean isPlayerHasBall() {
+<span class="fc" id="L51">		Point playerPositionCenter = new Point(getPlayerPosition().x + 15, getPlayerPosition().y + 30);</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">		return playerPositionCenter.distance(SoccerBall.getSoccerBall().getPosition()) &lt; 55;</span>
+	}
+
+	/**
+	 * Grabs the ball if a player is next to it.
+	 */
+	public void grabsBall() {
+<span class="fc" id="L59">		SoccerBall ball = SoccerBall.getSoccerBall();</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">		if (getPlayerPosition().x + 15 &gt; ball.getPosition().x) {</span>
+<span class="fc" id="L61">			ball.setPosition(new Point(getPlayerPosition().x - 10, getPlayerPosition().y + 55));</span>
+<span class="fc" id="L62">		} else {</span>
+<span class="fc" id="L63">			ball.setPosition(new Point(getPlayerPosition().x + 20, getPlayerPosition().y + 55));</span>
+		}
+<span class="fc" id="L65">	}</span>
+
+	/**
+	 * Abstract method to move player to left.
+	 */
+	public abstract void moveLeft();
+
+	/**
+	 * Abstract method to move player to right.
+	 */
+	public abstract void moveRight();
+
+	/**
+	 * Abstract method to move player up.
+	 */
+	public abstract void moveUp();
+
+	/**
+	 * Abstract method to move player down.
+	 */
+	public abstract void moveDown();
+
+	/**
+	 * Abstract method to shoot ball.
+	 */
+	public abstract void shootBall();
+
+	/**
+	 * Get the player's name.
+	 * @return name of player
+	 */
+	public String getPlayerName() {
+<span class="fc" id="L97">		return playerName;</span>
+	}
+
+	/**
+	 * Get the player's color.
+	 * @return color of player
+	 */
+	public Color getPlayerColor() {
+<span class="fc" id="L105">		return playerColor;</span>
+	}
+
+	/**
+	 * Get the position of a player.
+	 * @return position of player.
+	 */
+	public Point getPlayerPosition() {
+<span class="fc" id="L113">		return playerPosition;</span>
+	}
+
+	/**
+	 * Abstract method to set initial position.
+	 */
+	public abstract void setInitialPosition();
+
+	/**
+	 * Set the position of a player.
+	 * @param newPosition position of player
+	 */
+	public void setPlayerPosition(Point newPosition) {
+<span class="fc" id="L126">		playerPosition = newPosition;</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">		if (isPlayerHasBall()) {</span>
+<span class="fc" id="L128">			grabsBall();</span>
+		}
+<span class="fc" id="L130">	}</span>
+
+	/**
+	 * Get the statistics of a player.
+	 * @return integer representing catch or score of player.
+	 */
+	public Integer getPlayerStatistics() {
+<span class="fc" id="L137">		return playerStatistics.getStatistics();</span>
+	}
+
+	/**
+	 * Set the statistics of a player
+	 * @param newStatistics represents new number.
+	 */
+	public void setPlayerStatistics(Integer newStatistics) {
+<span class="fc" id="L145">		playerStatistics.setStatistics(newStatistics);</span>
+<span class="fc" id="L146">	}</span>
+
+	/**
+	 * Compare statistics of two players.
+	 * @param otherPlayer represents other player to compare to.
+	 */
+	@Override
+	public int compareTo(GamePlayer otherPlayer) {
+<span class="nc" id="L154">		return otherPlayer.getPlayerStatistics().compareTo(this.getPlayerStatistics());</span>
+	}
+
+	/**
+	 * Abstract method to print player details.
+	 */
+	@Override
+	public abstract String toString();
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
