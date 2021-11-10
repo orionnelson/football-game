@@ -1,5 +1,3 @@
-
-
 package test;
 import org.junit.jupiter.api.Test;
 
@@ -24,39 +22,71 @@ import test.TestListener;
 import view.GameMenuBar;
 import view.GamePanel;
 
+/**
+ *	Class to test models and in game events
+ */
 public class TestModels{
 	
 	
+	/**
+	 * Frame for testing Game
+	 */
+    public static JFrame gameFrame = new JFrame("Mini Soccer");
+    
+    /**
+     * Game panel used for testing Game
+     */
+	public static GamePanel gamePanel = new GamePanel();
 	
+	/**
+	 * Listens for input from player and used for testing
+	 */
+	public static GameListener gl = new GameListener(gamePanel);
 	
+	/**
+	 * Listens for input from player via menu bar and used for testing
+	 */
+	public static MenubarListener menubarListener = new MenubarListener(gamePanel);
 	
-	  public static JFrame gameFrame = new JFrame("Mini Soccer");
-		public static GamePanel gamePanel = new GamePanel();
-		public static GameListener gl = new GameListener(gamePanel);
-		public static MenubarListener menubarListener = new MenubarListener(gamePanel);
-		public static GameMenuBar gameMenuBar = new GameMenuBar(menubarListener);
-		SoccerGame sg = gamePanel.getGame();
-		public void setupGame(Point sp) {
-			gameFrame.add(gamePanel);
-			gameFrame.addKeyListener(gl);
-			gameFrame.setJMenuBar(gameMenuBar);
-			gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			gameFrame.setSize(600, 600);
-			gameFrame.setLocationRelativeTo(null);
-			gameFrame.setResizable(false);
-			gameFrame.setVisible(true);
-			sg.getActivePlayer().setPlayerPosition(sp);
-			genEvent(KeyEvent.VK_R);
-			 
-		}
+	/**
+	 * Menu bar used to listen for game bar events
+	 */
+	public static GameMenuBar gameMenuBar = new GameMenuBar(menubarListener);
 	
+	/**
+	 * Main game panel used to setup the game
+	 */
+	SoccerGame sg = gamePanel.getGame();
+	
+	/**
+	 * Setup game using specified parameters and starts the game via Resume (R)
+	 * @param sp Sets the start location of active player
+	 */	
+	public void setupGame(Point sp) {
+		gameFrame.add(gamePanel);
+		gameFrame.addKeyListener(gl);
+		gameFrame.setJMenuBar(gameMenuBar);
+		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		gameFrame.setSize(600, 600);
+		gameFrame.setLocationRelativeTo(null);
+		gameFrame.setResizable(false);
+		gameFrame.setVisible(true);
+		sg.getActivePlayer().setPlayerPosition(sp);
+		genEvent(KeyEvent.VK_R);
+		 
+	}
+	
+	/**
+	 * @param called Uses keyboard events to simulate player movement
+	 * @return returns a new point if the game is not paused and not over
+	 */	
 	public Point genEvent(int called) {
 		Point pos1  =  sg.getActivePlayer().getPlayerPosition();
 		try {
 			Robot r = new Robot();
-			 r.setAutoWaitForIdle(true);
-		     r.delay(1500);
-		     r.waitForIdle();
+			r.setAutoWaitForIdle(true);
+		    r.delay(1500);
+		    r.waitForIdle();
 			r.keyPress(called);r.keyRelease(called);
 			r.keyPress(called);r.keyRelease(called);
 			
@@ -76,9 +106,9 @@ public class TestModels{
 	}
 	
 	
-	
-	
-	
+	/**
+	 * Test if the game defender is active or null
+	 */
 	@Test 
 	@DisplayName("Test Get Unknown Player is Null")
 	public void getUnknownPlayer() {
@@ -89,6 +119,9 @@ public class TestModels{
 	}
 	
 	
+	/**
+	 * Test if the player is active
+	 */
 	@Test
 	@DisplayName("Test Striker is not Null in GetGamePlayers")
 	public void getStriker() {
@@ -98,7 +131,38 @@ public class TestModels{
 	}
 	
 	
+	/**
+	 * Test if Goal keeper is active
+	 */
+	@Test
+	@DisplayName("Test If Get Goalie is working")
+	public void getGoalie() {
+		setupGame(new Point(265,305));
+		//Teleports the ball to the player 
+		assertNotEquals(sg.getGamePlayers().get("Goalkeeper"),null);
+	}	
 	
+	/**
+	 * Test if Goal keeper is not active
+	 */
+	@Test
+	@DisplayName("Test If Get Goalie is working")
+	public void testGoalieStats() {
+		setupGame(new Point(265,305));
+		//Teleports the ball to the player 
+		assertTrue(sg.getGamePlayers().get("Goalkeeper").getPlayerStatistics()>=0);
+	}
+	
+	/**
+	 * Test if player is able to score
+	 */
+	@Test
+	@DisplayName("Test If Get Striker is working")
+	public void testStrikerStats() {
+		setupGame(new Point(265,305));
+		//Teleports the ball to the player 
+		assertTrue(sg.getGamePlayers().get("Striker").getPlayerStatistics()>=0);
+	}
 		@Test
 		@DisplayName("Test Goalie is not null in getGamePlayers")
 		public void getGoalie() {

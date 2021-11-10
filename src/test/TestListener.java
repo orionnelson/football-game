@@ -26,17 +26,48 @@ import javax.swing.JFrame;
 
 import org.junit.jupiter.api.DisplayName;
 
+/**
+ * 
+ * Creates a game panel for testing and simulates keyboard actions to test unit/edge cases 
+ */
 public class TestListener {
 	
-	// A new gamePanel is createted for testing
+
 	
-	
+	/**
+	 * Frame for testing Game
+	 */
     public static JFrame gameFrame = new JFrame("Mini Soccer");
+    
+    /**
+     * Game panel used for testing Game
+     */
 	public static GamePanel gamePanel = new GamePanel();
+	
+	/**
+	 * Listens for input from player and used for testing
+	 */
 	public static GameListener gl = new GameListener(gamePanel);
+	
+	/**
+	 * Listens for input from player via menu bar and used for testing
+	 */
 	public static MenubarListener menubarListener = new MenubarListener(gamePanel);
+	
+	/**
+	 * Menu bar used to listen for game bar events
+	 */
 	public static GameMenuBar gameMenuBar = new GameMenuBar(menubarListener);
+	
+	/**
+	 * Main game panel used to setup the game
+	 */
 	SoccerGame sg = gamePanel.getGame();
+	
+	/**
+	 * Setup game using specified parameters and starts the game via Resume (R)
+	 * @param sp Sets the start location of active player
+	 */
 	public void setupGame(Point sp) {
 		gameFrame.add(gamePanel);
 		gameFrame.addKeyListener(gl);
@@ -51,6 +82,9 @@ public class TestListener {
 		 
 	}
 	
+	/**
+	 * Testing player moving up
+	 */
 	@Test
 	@DisplayName("Test Player Moves Up")
 	public void testMovingUP() {
@@ -61,6 +95,10 @@ public class TestListener {
 		
 	}
 	
+	
+	/**
+	 * Testing player moving Down
+	 */
 	@Test
 	@DisplayName("Test Player Moves Down")
 	public void testMovingDown() {
@@ -71,6 +109,10 @@ public class TestListener {
 		
 	}
 	
+	
+	/**
+	 * Testing player moving Right
+	 */
 	@Test
 	@DisplayName("Test Player Moves Right")
 	public void testMovingRight() {
@@ -81,6 +123,11 @@ public class TestListener {
 		
 	}
 	
+	
+	
+	/**
+	 * Testing player moving Left
+	 */
 	@Test
 	@DisplayName("Test Player Moves Left")
 	public void testMovingLeft() {
@@ -91,7 +138,9 @@ public class TestListener {
 		
 	}
 	
-	
+	/**
+	 * Testing player is able to pick up the ball
+	 */
 	@Test
 	@DisplayName("Player Able to Pickup SoccerBall")
 	public void testPlayerPickupBall() {
@@ -103,6 +152,9 @@ public class TestListener {
 	}
 	
 	
+	/**
+	 * Simulates player shooting the soccer ball and tests the player has the ball
+	 */
 	@Test
 	@DisplayName("Player able to shoot SoccerBall")
 	public void testPlayerKick() {
@@ -114,6 +166,11 @@ public class TestListener {
 		assertFalse(sg.getActivePlayer().isPlayerHasBall());
 	}
 	
+	
+	/**
+	 * 
+	 * Simulates an out of bound scenario and checks that the score is 0
+	 */
 	@Test 
 	@DisplayName("Shot Out of bounds does not Count")
 	public void shotMissNet() {
@@ -127,6 +184,10 @@ public class TestListener {
 		
 	}
 	
+	
+	/**
+	 * Simulates a goal and checks that the score is counted
+	 */
 	@Test 
 	@DisplayName("Teleporting the ball into the goal counts as a goal")
 	public void runGoal() {
@@ -139,6 +200,9 @@ public class TestListener {
 		
 	}
 	
+	/**
+	 * Simulates conditions that ensure that the player cannot run into the net
+	 */
 	@Test
 	@DisplayName("The Player Cannot run into the net")
 	public void runPlayerStupid() {
@@ -154,6 +218,9 @@ public class TestListener {
 	}
 	
 	
+	/**
+	 * Simulates ball activity and ensures that the ball velocity is 0 when game is paused
+	 */
 	@Test 
 	@DisplayName("Test Ball Stops On Game Pause")
 	public void runShootPause() {
@@ -168,14 +235,17 @@ public class TestListener {
 	
 	
 	
-	
+	/**
+	 * @param called Uses keyboard events to simulate player movement
+	 * @return returns a new point if the game is not paused and not over
+	 */
 	public Point genEvent(int called) {
 		Point pos1  =  sg.getActivePlayer().getPlayerPosition();
 		try {
 			Robot r = new Robot();
-			 r.setAutoWaitForIdle(true);
-		     r.delay(1500);
-		     r.waitForIdle();
+			r.setAutoWaitForIdle(true);
+		    r.delay(1500);
+		    r.waitForIdle();
 			r.keyPress(called);r.keyRelease(called);
 			r.keyPress(called);r.keyRelease(called);
 			
@@ -189,7 +259,7 @@ public class TestListener {
 					pos2 = sg.getActivePlayer().getPlayerPosition();
 				
 	}
-		int x  = ( (int)pos2.getX() - (int)pos1.getX());
+		int x  = ((int)pos2.getX() - (int)pos1.getX());
 		int y = (int) (pos2.getY()-pos1.getY());
 	return new Point(x,y);
 	}

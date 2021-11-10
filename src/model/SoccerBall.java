@@ -40,7 +40,7 @@ public class SoccerBall {
 	}
 
 	/**
-	 * This method returns an instacne of the class. 
+	 * This method returns an instance of the class. 
 	 * @return SoccerBall the instance of class
 	 */
 	public static SoccerBall getSoccerBall() {
@@ -74,8 +74,9 @@ public class SoccerBall {
 	}
 	
 	/**
-	 * Moves the ball based on distance along the y axis
-	 * @param distance
+	 * Moves the ball based on distance along the x and y axis
+	 * @param distance Moves the ball to a new location provided it's within range, 
+	 * and displacement from the new location is larger than 20 pixels  
 	 */
 	public void moveBallY(int distance) {
 		if (getPosition().y + distance < 510 && getPosition().y - distance > 20) {
@@ -95,7 +96,7 @@ public class SoccerBall {
 
 	/**
 	 * Checks to see if the ball is on the goalkeeper's side.
-	 * @return boolean true or false.
+	 * @return Returns true if it's less than 200
 	 */
 	public boolean onGoalkeeperSide() {
 		return getPosition().y < 200;
@@ -127,7 +128,7 @@ public class SoccerBall {
 
 	/**
 	 * Gets the position of the ball
-	 * @return a Point representing the position.
+	 * @return A Point representing the position.
 	 */
 	public Point getPosition() {
 		return position;
@@ -143,7 +144,7 @@ public class SoccerBall {
 
 	/**
 	 * Gets the color of the ball
-	 * @return color
+	 * @return Color
 	 */
 	public Color getColor() {
 		return color;

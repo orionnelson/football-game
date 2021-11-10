@@ -30,7 +30,7 @@ public class PlayerStatistics {
 	
 	/**
 	 * Get a string representation of player statistics.
-	 * @returns a string of statistics
+	 * @return Converts the number to an Integer
 	 */
 	public String toString(){
 		return Integer.toString(getStatistics());
