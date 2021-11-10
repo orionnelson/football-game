@@ -178,9 +178,6 @@ public class TestMenuListener{
 	//    }
 
 
-	/**
-	 * Generic test case for testing
-	 */
 	@Test
 	@DisplayName("Tests Pause And Resume Sequence")
 	public void testPauseResume() {
