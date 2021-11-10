@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameMenuBar.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">football-game</a> &gt; <a href="index.source.html" class="el_package">view</a> &gt; <span class="el_source">GameMenuBar.java</span></div><h1>GameMenuBar.java</h1><pre class="source lang-java linenums">package view;
+
+import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
+/**
+ * This class extends JMenuBar and represents the Menu for 
+ * user to pick options.
+ *
+ */
+public class GameMenuBar extends JMenuBar {
+
+	/**
+	 * Constructor to initialize the menu bar with items.
+	 * @param menubarListener  Listens for keyboard input allows the user to create a
+	 * a new game (N), pause (P) , resume (R), or exit (E)
+	 */
+	public GameMenuBar(ActionListener menubarListener) {
+<span class="fc" id="L20">		super();</span>
+<span class="fc" id="L21">		JMenu gameMenu = new JMenu(&quot;Game&quot;);</span>
+<span class="fc" id="L22">		gameMenu.add(createMenuItem(&quot;New game&quot;, &quot;NEW&quot;, KeyEvent.VK_N, menubarListener));</span>
+<span class="fc" id="L23">		gameMenu.addSeparator();</span>
+<span class="fc" id="L24">		gameMenu.add(createMenuItem(&quot;Exit&quot;, &quot;EXIT&quot;, KeyEvent.VK_Q, menubarListener));</span>
+<span class="fc" id="L25">		super.add(gameMenu);</span>
+<span class="fc" id="L26">		JMenu controlMenu = new JMenu(&quot;Control&quot;);</span>
+<span class="fc" id="L27">		controlMenu.add(createMenuItem(&quot;Pause&quot;, &quot;PAUSE&quot;, KeyEvent.VK_P, menubarListener));</span>
+<span class="fc" id="L28">		controlMenu.add(createMenuItem(&quot;Resume&quot;, &quot;RESUME&quot;, KeyEvent.VK_R, menubarListener));</span>
+<span class="fc" id="L29">		super.add(controlMenu);</span>
+<span class="fc" id="L30">	}</span>
+
+	/**
+	 * Helper method to constructor to create the menu.
+	 * @param text Used to create generic text for menu
+	 * @param actionCommand Action defined for user interaction (in this case, New, Exit, Pause, and Resume)
+	 * @param accelerator The keyboard input received by the user
+	 * @param listener Required for each menu item as it is used to capture the action event
+	 * @return created menu item.
+	 */
+	private JMenuItem createMenuItem(String text, String actionCommand, int accelerator, ActionListener listener) {
+<span class="fc" id="L41">		JMenuItem menuItem = new JMenuItem(text);</span>
+<span class="fc" id="L42">		menuItem.setActionCommand(actionCommand);</span>
+<span class="fc" id="L43">		menuItem.addActionListener(listener);</span>
+<span class="fc" id="L44">		menuItem.setAccelerator(KeyStroke.getKeyStroke(accelerator, 0));</span>
+<span class="fc" id="L45">		return menuItem;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
