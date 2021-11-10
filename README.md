@@ -69,16 +69,38 @@ including `pause` and `resume` will be disabled until a new `SoccerGame` is star
 ## Testing Was Done Using GitHub Workflows
 Using github workflows for testing we were able to automaticly generate our testing coverage and evaluating test cases to rule out bugs in the code. 
 
+We used the github wiki for this
+https://github.com/robotframework/robotframework/wiki/Testing-Design
+
+In the Testing Design we broke down the Test Groups into two types of testing.
+
+| Test Case	 |		Test Design | 
+| :--------: | :---------:  |
+| Listener Tests	|		Contains tests that test the user interface with robot |
+| Menu Tests		|		Tests the Model and Listener Tasks for the Menu |
+| Model Tests		|	Tests the Model |
+| View Tests |   Quit Test Case Verified manually |
+
+
 | ![Model Cover](https://or9.ca/soccer/testitems/model%20coverage.png) |
 
 ## Test Case Breakdown
 The Test Cases Were Broken Down Into Three Catagories
-## Test Case OverView
+## Test Case Specifics / Implemented Design
 |      Id        |  TestGroup   |   Description |
 | :------------: | :----------: | :----------:  | 
 |  | ListenerTests     |   Dealt with making sure that all the input mappings and core events were working correctly `Robot` keyevent    |
 |  | MenuListenerTests |  Worked with the menu events and performed tests using `java.awt.Robot` with mousevent/keyevent                 | 
 |  |   ModelTests     |  Tests Model Init and and if all of the methods of model are working correctly                                   |
+
+## Platforms 
+
+Testing was done on the following platforms = [Windows-Latest, Ubuntu-Latest] and due to restrictions with Maveren for our workflow we had to drop support for older versions of Java so we ended using JDK = [11, 16].
+
+### Listener Tests 
+
+
+
  
 
 
