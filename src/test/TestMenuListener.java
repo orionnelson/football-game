@@ -14,10 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Test menu actions
- */
-public class TestMenuListener {
 import java.awt.AWTException;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -133,9 +129,6 @@ public boolean isWindows(){
 //    }
 	
 	
-	/**
-	 * Generic test case for testing
-	 */
 	@Test
 	@DisplayName("Tests Pause And Resume Sequence")
 	public void testPauseResume() {
