@@ -111,7 +111,7 @@ The user interface tests were broken down into three categories. The first categ
 | :-----:                                                          |
 | ![Listener](https://or9.ca/soccer/testitems/Menu%20Listener.png) |
 | :-----:                                                          |
-|   https://user-images.githubusercontent.com/44347765/141044687-3babaedc-5146-4943-96df-ca99fe8df8d1.mp4  |
+|   ![TestListener](https://user-images.githubusercontent.com/44347765/141044983-e7205133-b400-4a89-b2e6-3aab4695b453.gif)  |
 |  The menu listener in action                                     |
 
 
@@ -121,9 +121,6 @@ The third category was the Model Tests. These tests were focused on the model an
 
 
 
-
-
- 
 
 
 
