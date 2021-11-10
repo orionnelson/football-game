@@ -58,7 +58,7 @@ including `pause` and `resume` will be disabled until a new `SoccerGame` is star
 | In game    | Game over   |
 | :------------: | :----------: |
 | ![In game](screenshots/in_game.png) | ![Game over](screenshots/game_over.png) |
-=======
+`=`
 | Javadoc: https://or9.ca/soccer | CodeCov: https://app.codecov.io/gh/orionnelson/football-game |
 | Demo: https://youtu.be/2aL0P4bcZAM |                                                          |
 
@@ -72,10 +72,12 @@ Using github workflows for testing we were able to automaticly generate our test
 | ![Model Cover](https://or9.ca/soccer/testitems/model%20coverage.png) |
 
 ## Test Case Breakdown
-
-The 
-
-
+The Test Cases Were Broken Down Into Three Catagories
+## Test Case OverView
+| :-----------: | ListenerTests     |   Dealt with making sure that all the input mappings and core events were working correctly `Robot` keyevent    |
+| :-----------: | MenuListenerTests |  Worked with the menu events and performed tests using `java.awt.Robot` with mousevent/keyevent                 | 
+| :-----------: |    ModelTests     |  Tests Model Init and and if all of the methods of model are working correctly                                  |
+### 
 
 
 
