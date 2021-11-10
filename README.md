@@ -110,7 +110,7 @@ The user interface tests were broken down into three categories. The first categ
 | Menu Listener Test Cases                                         | 
 | :-----:                                                          |
 | ![Listener](https://or9.ca/soccer/testitems/Menu%20Listener.png) |
-| :-----:                                                          |
+|                                                           |
 |   ![TestListener](https://user-images.githubusercontent.com/44347765/141044983-e7205133-b400-4a89-b2e6-3aab4695b453.gif)  |
 |  The menu listener in action                                     |
 
