@@ -106,12 +106,18 @@ Testing was done on the following platforms = [`Windows-Latest`, `Ubuntu-Latest`
 Our first set of tests were the listener tests. This was a set of tests that worked on the user interface with robot. To test the user interface we used the Robot class and the JFrame for testing. The Robot class was used for testing the KeyEvents and mouseEvents, and the JFrame for testing the input mappings and mouse events. The Robot class was used for testing the key events by moving the mouse over the JFrame and pressing the buttons to simulate a user using the JFrame.
 
 The user interface tests were broken down into three categories. The first category was the Core Input mappings. These tests were tests for the core input mappings that we used for the application. The second category was the Menu Tests. This was a set of tests for the model that were focused on the menu and its functionality.
-The third category was the Model Tests. These tests were focused on the model and tested the functionality of the methods.
 
-| Menu Listener Test Cases                                      | 
-| :-----:                                                       |
+| Menu Listener Test Cases                                         | 
+| :-----:                                                          |
 | ![Listener](https://or9.ca/soccer/testitems/Menu%20Listener.png) |
+| :-----:                                                          |
+| ![Listener](https://or9.ca/soccer/testitems/TestListener.mp4)    |
+|  The menu listener in action                                     |
 
+
+
+
+The third category was the Model Tests. These tests were focused on the model and tested the functionality of the methods.
 
 
 
