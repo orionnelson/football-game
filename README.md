@@ -58,14 +58,69 @@ including `pause` and `resume` will be disabled until a new `SoccerGame` is star
 | In game    | Game over   |
 | :------------: | :----------: |
 | ![In game](screenshots/in_game.png) | ![Game over](screenshots/game_over.png) |
-=======
+`=`
+| Javadoc: https://or9.ca/soccer | CodeCov: https://app.codecov.io/gh/orionnelson/football-game |
+| Demo: https://youtu.be/2aL0P4bcZAM |                                                          |
 
-Demo: https://youtu.be/2aL0P4bcZAM 
 ### football-game 
 
 
-### Testing 
+### Testing Methods 
 ## Testing Was Done Using GitHub Workflows
+Using github workflows for testing we were able to automaticly generate our testing coverage and evaluating test cases to rule out bugs in the code. 
+
+We used this github wiki for this
+https://github.com/robotframework/robotframework/wiki/Testing-Design
+
+In the Testing Design we broke down the Test Groups into two types of testing.
+
+| Test Case	 |		Test Design | 
+| :--------: | :---------:  |
+| Listener Tests	|		Contains tests that test the user interface with robot |
+| Menu Tests		|		Tests the Model and Listener Tasks for the Menu |
+| Model Tests		|	Tests the Model |
+| View Tests |   Quit Test Case Verified manually |
+
+## Model Coverage
+
+| ![Model Coverage](https://or9.ca/soccer/testitems/model%20coverage.png) |
+
+## Test Case Breakdown
+The Test Cases Were Broken Down Into Three Catagories
+## Test Case Specifics / Implemented Design
+|      Id        |  TestGroup   |   Description |
+| :------------: | :----------: | :----------:  | 
+|  | ListenerTests     |   Dealt with making sure that all the input mappings and core events were working correctly `Robot` keyevent    |
+|  | MenuListenerTests |  Worked with the menu events and performed tests using `java.awt.Robot` with mousevent/keyevent                 | 
+|  |   ModelTests     |  Tests Model Init and and if all of the methods of model are working correctly                                   |
+
+## Platforms 
+
+Testing was done on the following platforms = [`Windows-Latest`, `Ubuntu-Latest`] and due to restrictions with Maveren for our workflow we had to drop support for older versions of Java so we ended using JDK = [`11`, `16`].
+
+### Listener Tests 
+| Listener  Test Case                                           | 
+| :-----:                                                       |
+| ![Listener](https://or9.ca/soccer/testitems/TestListener.png) |
+
+Our first set of tests were the listener tests. This was a set of tests that worked on the user interface with robot. To test the user interface we used the Robot class and the JFrame for testing. The Robot class was used for testing the KeyEvents and mouseEvents, and the JFrame for testing the input mappings and mouse events. The Robot class was used for testing the key events by moving the mouse over the JFrame and pressing the buttons to simulate a user using the JFrame.
+
+The user interface tests were broken down into three categories. The first category was the Core Input mappings. These tests were tests for the core input mappings that we used for the application. The second category was the Menu Tests. This was a set of tests for the model that were focused on the menu and its functionality.
+
+| Menu Listener Test Cases                                         | 
+| :-----:                                                          |
+| ![Listener](https://or9.ca/soccer/testitems/Menu%20Listener.png) |
+|                                                           |
+|   ![TestListener](https://user-images.githubusercontent.com/44347765/141044983-e7205133-b400-4a89-b2e6-3aab4695b453.gif)  |
+|  The menu listener in action                                     |
+
+
+### Model Tests 
+
+The third category was the Model Tests. These tests were focused on the model and tested the functionality of the methods.  The tests were designed to test the predictability and consistency of the methods, and the results were recorded and compiled into a test matrix. The test matrix was then used to determine the overall reliability of the model.
+| Model  Test Cases                                             | 
+| :-----:                                                       |
+| ![Model](https://or9.ca/soccer/testitems/TestModels.png) |
 
 
 
