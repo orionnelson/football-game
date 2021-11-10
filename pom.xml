@@ -40,7 +40,8 @@
         <configuration>
         <excludes>
             <exclude>**/test/*</exclude>
-           <exclude>**/controller/MenubarListener.java</exclude>
+          <exclude>**/main/*</exclude>
+           <exclude>**/controller/MenubarListener.class</exclude>
         </excludes>
     </configuration>
                <executions>
