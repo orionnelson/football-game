@@ -11,7 +11,12 @@ import view.GameMenuBar;
 import view.GamePanel;
 import java.awt.Robot;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+
 
 import java.awt.AWTException;
 import java.awt.Point;
@@ -153,7 +158,7 @@ public class TestListener {
 	@Test
 	@DisplayName("Player able to shoot SoccerBall")
 	public void testPlayerKick() {
-		setupGame(new Point(265,305));
+		setupGame(new Point(450,305));
 		//Teleports the ball to the player 
 		SoccerBall.getSoccerBall().setPosition(sg.getActivePlayer().getPlayerPosition());
 		genEvent(KeyEvent.VK_UP);

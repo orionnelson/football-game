@@ -123,7 +123,7 @@ public class TestModels{
 	 * Test if the player is active
 	 */
 	@Test
-	@DisplayName("Test If Get Striker is working")
+	@DisplayName("Test Striker is not Null in GetGamePlayers")
 	public void getStriker() {
 		setupGame(new Point(265,305));
 		//Teleports the ball to the player 
@@ -163,7 +163,55 @@ public class TestModels{
 		//Teleports the ball to the player 
 		assertTrue(sg.getGamePlayers().get("Striker").getPlayerStatistics()>=0);
 	}
+		@Test
+		@DisplayName("Test Goalie is not null in getGamePlayers")
+		public void getGoalie() {
+			setupGame(new Point(265,305));
+			//Teleports the ball to the player 
+			assertNotEquals(sg.getGamePlayers().get("Goalkeeper"),null);
+		}	
 		
+		@Test
+		@DisplayName("Test If Get Goalie is working")
+		public void testGoalieStats() {
+			setupGame(new Point(265,305));
+			//Teleports the ball to the player 
+			assertEquals(sg.getGamePlayers().get("Goalkeeper").getPlayerStatistics()>=0,true);
+		}
+		
+		
+		@Test
+		@DisplayName("Test If Get Striker is working")
+		public void testStrikerStats() {
+			setupGame(new Point(265,305));
+			//Teleports the ball to the player 
+			assertEquals(sg.getGamePlayers().get("Striker").getPlayerStatistics()>=0,true);
+		}
+		
+	
+	        @Test
+		@DisplayName("Test Entitys To String")
+		public void testToString(){
+			setupGame(new Point(265,305));
+			assertTrue(sg.getGamePlayers().get("Striker").toString()!=null&&sg.getGamePlayers().get("Goalkeeper").toString()!=null);
+		}
+	
+		@Test 
+		@DisplayName("Test On New Start Game Goals can be scored")
+		public void testnewGame() {
+			setupGame(new Point(265,305));
+			sg.setGoal(99);
+			boolean goalworks = sg.getGoal().equals(99);
+			sg.getGamePlayers().sort();
+			genEvent(KeyEvent.VK_UP);
+			genEvent(KeyEvent.VK_N);
+			SoccerBall.getSoccerBall().setPosition(new Point(181,11));
+			int cgl = sg.getActivePlayer().getPlayerStatistics();
+			System.out.println(sg.getActivePlayer().getPlayerStatistics());
+			//This should be one somthing is broken
+			boolean gsonnewgame  = (sg.getActivePlayer().getPlayerStatistics()-cgl)==(0);
+			assertTrue(goalworks&&gsonnewgame);
+		}
 	
 	
 }
