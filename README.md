@@ -84,6 +84,7 @@ In the Testing Design we broke down the Test Groups into two types of testing.
 ## Model Coverage
 
 | ![Model Coverage](https://or9.ca/soccer/testitems/model%20coverage.png) |
+| ![Model Coverage](https://or9.ca/soccer/testitems/src%20model.png) |
 
 ## Test Case Breakdown
 The Test Cases Were Broken Down Into Three Catagories
