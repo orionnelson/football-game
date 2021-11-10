@@ -74,11 +74,11 @@ Using github workflows for testing we were able to automaticly generate our test
 ## Test Case Breakdown
 The Test Cases Were Broken Down Into Three Catagories
 ## Test Case OverView
-
-| :------------: | :----------: | :----------: | 
+|      Id        |  TestGroup   |   Description |
+| :------------: | :----------: | :----------:  | 
 |  | ListenerTests     |   Dealt with making sure that all the input mappings and core events were working correctly `Robot` keyevent    |
 |  | MenuListenerTests |  Worked with the menu events and performed tests using `java.awt.Robot` with mousevent/keyevent                 | 
-|  |   ModelTests     |  Tests Model Init and and if all of the methods of model are working correctly                                  |
+|  |   ModelTests     |  Tests Model Init and and if all of the methods of model are working correctly                                   |
  
 
 
